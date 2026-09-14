@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nansary Total Inspiración — bolsos elegantes con envíos a toda Colombia.">
+  <title>Nansary | Total Inspiración</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <a class="brand" href="#inicio">
+      <img src="assets/logo.jpeg" alt="Nansary Total Inspiración">
+    </a>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <button class="cart-button" id="openCart" aria-label="Abrir carrito">
+      Carrito <span id="cartCount">0</span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="eyebrow">NANSARY · TOTAL INSPIRACIÓN</p>
+        <h1>Elegancia que<br><span>te representa.</span></h1>
+        <p>Descubre bolsos pensados para acompañarte en cada momento.</p>
+        <a class="gold-button" href="#catalogo">Ver colección</a>
+        <div class="shipping-note">✦ Envíos a toda Colombia ✦</div>
+      </div>
+    </section>
+
+    <section class="intro">
+      <p class="eyebrow">COLECCIÓN NANSARY</p>
+      <h2>Tu estilo comienza con el detalle.</h2>
+      <p>Una selección de diseños para quienes buscan presencia, funcionalidad y elegancia.</p>
+    </section>
+
+    <section class="catalog" id="catalogo">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">NUESTRA SELECCIÓN</p>
+          <h2>Favoritos</h2>
+        </div>
+        <p class="catalog-help">Agrega tus favoritos al carrito y realiza tu pedido directamente por WhatsApp.</p>
+      </div>
+
+      <div class="products" id="products"></div>
+    </section>
+
+    <section class="about" id="nosotros">
+      <div>
+        <p class="eyebrow">NANSARY</p>
+        <h2>Total inspiración.</h2>
+      </div>
+      <p>Creemos que un bolso no es solo un accesorio: es parte de tu identidad. Elegimos diseños versátiles y elegantes para que encuentres una pieza que se adapte a tu estilo.</p>
+    </section>
+
+    <section class="contact" id="contacto">
+      <p class="eyebrow">¿NECESITAS AYUDA?</p>
+      <h2>Estamos para atenderte.</h2>
+      <p>Escríbenos por WhatsApp para consultar colores, disponibilidad, envíos o realizar tu compra.</p>
+      <a class="gold-button" href="https://wa.me/573142717862" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+      <p class="small">📦 Envíos a toda Colombia</p>
+    </section>
+  </main>
+
+  <footer>
+    <img src="assets/logo.jpeg" alt="Nansary" class="footer-logo">
+    <p>© 2026 Nansary · Total Inspiración</p>
+    <p>Envíos a toda Colombia · Compra segura por WhatsApp</p>
+  </footer>
+
+  <aside class="cart-panel" id="cartPanel" aria-hidden="true">
+    <div class="cart-head">
+      <h2>Tu carrito</h2>
+      <button id="closeCart" class="close">×</button>
+    </div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-footer">
+      <div class="total"><span>Total</span><strong id="cartTotal">$0</strong></div>
+      <button id="checkout" class="gold-button full">Finalizar por WhatsApp</button>
+      <button id="clearCart" class="text-button">Vaciar carrito</button>
+    </div>
+  </aside>
+  <div class="cart-backdrop" id="cartBackdrop"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
