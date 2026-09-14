@@ -122,7 +122,77 @@ footer{text-align:center;border-top:1px solid var(--line);padding:35px 20px;colo
 .full{width:100%;text-align:center;margin-top:0}
 .text-button{display:block;margin:14px auto 0;border:0;background:none;color:#81786f;font-size:10px;text-transform:uppercase;letter-spacing:1px;cursor:pointer}
 .empty{color:var(--muted);font-size:12px;text-align:center;padding:50px 0;line-height:1.8}
-@media(max-width:800px){
+.contact-buttons{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:8px;
+}
+
+.instagram-button{
+  display:inline-block;
+  padding:14px 25px;
+  border:1px solid var(--line);
+  color:var(--cream);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transition:.25s ease;
+}
+
+.instagram-button:hover{
+  border-color:var(--gold);
+  color:var(--gold-light);
+  transform:translateY(-2px);
+}
+
+.contact-features{
+  display:flex;
+  justify-content:center;
+  gap:55px;
+  flex-wrap:wrap;
+  margin-top:55px;
+  padding-top:35px;
+  border-top:1px solid rgba(202,161,90,.15);
+}
+
+.contact-features div{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  min-width:150px;
+}
+
+.contact-features strong{
+  font-size:20px;
+}
+
+.contact-features span{
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+@media(max-width:600px){
+  .contact-buttons{
+    flex-direction:column;
+  }
+
+  .contact-buttons .gold-button,
+  .contact-buttons .instagram-button{
+    width:100%;
+    text-align:center;
+  }
+
+  .contact-features{
+    gap:30px;
+  }
+}@media(max-width:800px){
   .header{height:72px}
   .header nav{display:none}
   .hero{min-height:70vh}
