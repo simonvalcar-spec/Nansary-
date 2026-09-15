@@ -73,13 +73,42 @@ function openProductModal(id) {
   document.getElementById("modalProductName").textContent = product.name;
   document.getElementById("modalProductPrice").textContent = money(product.price);
   document.getElementById("modalProductDescription").textContent = product.desc;
+let modalQuantity = 1;
 
-  document.getElementById("modalAddCart").onclick = function() {
+document.getElementById("modalQuantity").textContent = modalQuantity;
+
+document.getElementById("modalMinus").onclick = function() {
+  if (modalQuantity > 1) {
+    modalQuantity--;
+    document.getElementById("modalQuantity").textContent = modalQuantity;
+  }
+};
+
+document.getElementById("modalPlus").onclick = function() {
+  modalQuantity++;
+  document.getElementById("modalQuantity").textContent = modalQuantity;
+};
+ document.getElementById("modalAddCart").onclick = function() {
+  for (let i = 0; i < modalQuantity; i++) {
     addToCart(product.id);
-  };
+  }
+
+  closeProductModal();
+};
 
   document.getElementById("modalBuyWhatsApp").onclick = function() {
-    const message = `Hola Nansary 👋 Estoy interesado/a en el ${product.name} por ${money(product.price)}. ¿Está disponible?`;
+   const total = product.price * modalQuantity;
+
+const message = `Hola Nansary 👋
+
+Estoy interesado/a en realizar este pedido:
+
+👜 ${product.name}
+Cantidad: ${modalQuantity}
+Precio unitario: ${money(product.price)}
+Total: ${money(total)}
+
+¿Está disponible?`;
 
     window.open(
       `https://wa.me/573142717862?text=${encodeURIComponent(message)}`,
