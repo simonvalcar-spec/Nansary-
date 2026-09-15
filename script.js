@@ -252,24 +252,78 @@ document.getElementById("checkout").addEventListener("click", () => {
     alert("Agrega al menos un producto al carrito.");
     return;
   }
+
+  document.getElementById("checkoutModal").classList.add("active");
+  document.body.style.overflow = "hidden";
+});
+
+
+document.getElementById("closeCheckoutModal").addEventListener("click", () => {
+  document.getElementById("checkoutModal").classList.remove("active");
+  document.body.style.overflow = "";
+});
+
+
+document.getElementById("checkoutModal").addEventListener("click", (event) => {
+  if (event.target === event.currentTarget) {
+    document.getElementById("checkoutModal").classList.remove("active");
+    document.body.style.overflow = "";
+  }
+});
+
+
+document.getElementById("checkoutForm").addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  if (!cart.length) {
+    alert("Agrega al menos un producto al carrito.");
+    return;
+  }
+
+  const name = document.getElementById("customerName").value.trim();
+  const city = document.getElementById("customerCity").value.trim();
+  const address = document.getElementById("customerAddress").value.trim();
+  const note = document.getElementById("customerNote").value.trim();
+
   const lines = cart.map(item => {
     const p = products.find(x => x.id === item.id);
-    return `• ${p.name} x${item.qty} — ${money(p.price * item.qty)}`;
+
+    return `👜 ${p.name}
+Cantidad: ${item.qty}
+Subtotal: ${money(p.price * item.qty)}`;
   });
+
   const total = cart.reduce((sum, item) => {
     const p = products.find(x => x.id === item.id);
+
     return sum + p.price * item.qty;
   }, 0);
+
   const message =
-`Hola, Nansary. Quiero realizar este pedido:
+`Hola Nansary 👋
 
-${lines.join("\n")}
+Quiero realizar el siguiente pedido:
 
-Total: ${money(total)}
+${lines.join("\n\n")}
 
-¿Me pueden confirmar disponibilidad y costo de envío?`;
+━━━━━━━━━━━━━━
+TOTAL: ${money(total)}
+━━━━━━━━━━━━━━
 
-  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`, "_blank");
+👤 Nombre: ${name}
+📍 Ciudad: ${city}
+🏠 Dirección: ${address}
+${note ? `📝 Indicación: ${note}` : ""}
+
+¿Me pueden confirmar disponibilidad y costo de envío? 😊`;
+
+  window.open(
+    `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
+
+  document.getElementById("checkoutModal").classList.remove("active");
+  document.body.style.overflow = "";
 });
 
 renderProducts();
