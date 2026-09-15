@@ -38,21 +38,68 @@ function saveCart() {
 }
 
 function renderProducts() {
+  function openProductModal(id) {
+  const product = products.find(p => p.id === id);
+
+  if (!product) return;
+
+  document.getElementById("modalProductImage").src = product.image;
+  document.getElementById("modalProductImage").alt = product.name;
+
+  document.getElementById("modalProductName").textContent = product.name;
+  document.getElementById("modalProductPrice").textContent = money(product.price);
+  document.getElementById("modalProductDescription").textContent = product.desc;
+
+  document.getElementById("modalAddCart").onclick = function() {
+    addToCart(product.id);
+  };
+
+  document.getElementById("modalBuyWhatsApp").onclick = function() {
+    const message = `Hola Nansary 👋 Estoy interesado/a en el ${product.name} por ${money(product.price)}. ¿Está disponible?`;
+    window.open(
+      `https://wa.me/573142717862?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
+  };
+
+  document.getElementById("productModal").classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+function closeProductModal() {
+  document.getElementById("productModal").classList.remove("active");
+  document.body.style.overflow = "";
+}
+
+document.getElementById("closeProductModal").addEventListener("click", closeProductModal);
+
+document.getElementById("productModal").addEventListener("click", function(event) {
+  if (event.target === this) {
+    closeProductModal();
+  }
+});
   document.getElementById("products").innerHTML = products.map(p => `
-    <article class="product">
+    <article class="product" onclick="openProductModal(${p.id})">
       <div class="product-image">
         <img src="${p.image}" alt="${p.name}" loading="lazy">
       </div>
+
       <div class="product-info">
         <h3 class="product-name">${p.name}</h3>
         <p class="product-desc">${p.desc}</p>
+
         <div class="product-row">
           <span class="price">${money(p.price)}</span>
-          <button class="add-button" onclick="addToCart(${p.id})">Agregar</button>
+
+          <button
+            class="add-button"
+            onclick="event.stopPropagation(); addToCart(${p.id})">
+            Agregar
+          </button>
         </div>
       </div>
     </article>
   `).join("");
+}
 }
 
 function addToCart(id) {
