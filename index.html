@@ -178,6 +178,68 @@
     <div class="cart-footer">
       <div class="total"><span>Total</span><strong id="cartTotal">$0</strong></div>
       <button id="checkout" class="gold-button full">Finalizar por WhatsApp</button>
+      <!-- Ventana de datos del pedido -->
+<div class="checkout-modal" id="checkoutModal">
+  <div class="checkout-modal-content">
+
+    <button class="checkout-close" id="closeCheckoutModal">×</button>
+
+    <p class="eyebrow">NANSARY · TOTAL INSPIRACIÓN</p>
+
+    <h2>Finalizar pedido</h2>
+
+    <p class="checkout-intro">
+      Completa tus datos para enviar tu pedido directamente por WhatsApp.
+    </p>
+
+    <form id="checkoutForm">
+
+      <label for="customerName">Nombre completo</label>
+      <input
+        type="text"
+        id="customerName"
+        placeholder="Ej. María García"
+        required
+      >
+
+      <label for="customerCity">Ciudad</label>
+      <input
+        type="text"
+        id="customerCity"
+        placeholder="Ej. Sogamoso"
+        required
+      >
+
+      <label for="customerAddress">Dirección</label>
+      <input
+        type="text"
+        id="customerAddress"
+        placeholder="Ej. Calle 10 # 15-20"
+        required
+      >
+
+      <label for="customerNote">
+        Indicación adicional <span>(opcional)</span>
+      </label>
+
+      <textarea
+        id="customerNote"
+        placeholder="Color, horario de entrega, apartamento, etc."
+        rows="3"
+      ></textarea>
+
+      <button type="submit" class="gold-button checkout-submit">
+        📲 Enviar pedido por WhatsApp
+      </button>
+
+    </form>
+
+    <p class="checkout-shipping">
+      🚚 Envíos a toda Colombia
+    </p>
+
+  </div>
+</div>
       <button id="clearCart" class="text-button">Vaciar carrito</button>
     </div>
   </aside>
