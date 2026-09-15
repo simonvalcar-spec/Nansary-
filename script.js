@@ -107,30 +107,7 @@ document.getElementById("productModal")
       closeProductModal();
     }
   });
-  document.getElementById("products").innerHTML = products.map(p => `
-    <article class="product" onclick="openProductModal(${p.id})">
-      <div class="product-image">
-        <img src="${p.image}" alt="${p.name}" loading="lazy">
-      </div>
-
-      <div class="product-info">
-        <h3 class="product-name">${p.name}</h3>
-        <p class="product-desc">${p.desc}</p>
-
-        <div class="product-row">
-          <span class="price">${money(p.price)}</span>
-
-          <button
-            class="add-button"
-            onclick="event.stopPropagation(); addToCart(${p.id})">
-            Agregar
-          </button>
-        </div>
-      </div>
-    </article>
-  `).join("");
-}
-}
+ 
 
 function addToCart(id) {
   const existing = cart.find(item => item.id === id);
