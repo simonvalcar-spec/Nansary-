@@ -57,10 +57,41 @@ function renderProducts() {
 
 function addToCart(id) {
   const existing = cart.find(item => item.id === id);
-  if (existing) existing.qty++;
-  else cart.push({ id, qty: 1 });
+
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ id, qty: 1 });
+  }
+
   saveCart();
+
+  const product = products.find(p => p.id === id);
+
+  showAddedMessage(product.name);
   openCart();
+}
+
+function showAddedMessage(productName) {
+  const message = document.createElement("div");
+
+  message.className = "added-message";
+
+  message.innerHTML = `
+    <strong>✓ Agregado al carrito</strong>
+    <span>${productName}</span>
+  `;
+
+  document.body.appendChild(message);
+
+  setTimeout(() => {
+    message.classList.add("hide");
+  }, 2200);
+
+  setTimeout(() => {
+    message.remove();
+  }, 2600);
+
 }
 
 function changeQty(id, delta) {
