@@ -37,7 +37,11 @@ h1 span{color:var(--gold-light)}
 .section-heading{display:flex;align-items:end;justify-content:space-between;gap:30px;border-bottom:1px solid var(--line);padding-bottom:25px;margin-bottom:35px}
 .section-heading h2{margin:0}
 .catalog-help{max-width:400px;color:var(--muted);font-size:12px;line-height:1.7}
-.products{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.products{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+}
 .product{
   background:linear-gradient(145deg,#18130f,#0d0b09);
   border:1px solid rgba(202,161,90,.20);
@@ -577,7 +581,37 @@ footer{text-align:center;border-top:1px solid var(--line);padding:35px 20px;colo
   .header nav{display:none}
   .hero{min-height:70vh}
   .hero-content{padding:55px 7vw}
-  .products{grid-template-columns:1fr}
+  .products{
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+.product-info{
+  padding:14px;
+}
+
+.product-name{
+  font-size:13px;
+  line-height:1.35;
+}
+
+.product-desc{
+  font-size:11px;
+  line-height:1.45;
+}
+
+.price{
+  font-size:13px;
+}
+
+.product-row{
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.add-button{
+  padding:9px 11px;
+  font-size:10px;
+}
   .section-heading{display:block}
   .catalog-help{margin-top:15px}
   .about{grid-template-columns:1fr;gap:20px;padding:65px 8vw}
