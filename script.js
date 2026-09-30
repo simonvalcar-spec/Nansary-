@@ -43,9 +43,6 @@ price: 265000,
 image: "assets/Lia-compacto-miel.png",
 desc: "Diseño compacto y elegante con un acabado en tono miel."
 },
-
-// NUEVA COLECCIÓN
-
 {
 id: 7,
 name: "Bolso Cala Negro",
