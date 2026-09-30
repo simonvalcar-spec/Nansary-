@@ -111,12 +111,9 @@ renderCart();
 }
 
 function renderProducts() {
-document.getElementById("products").innerHTML = products.map(p => `
-<article class="product" onclick="openProductModal(${p.id})">
-<div class="product-image">
-<img src="${p.image}" alt="${p.name}" loading="lazy">
-</div>
+document.getElementById("products").innerHTML = products.map(p => ` <article class="product" onclick="openProductModal(${p.id})"> <div class="product-image"> <img src="${p.image}" alt="${p.name}" loading="lazy"> </div>
 
+```
   <div class="product-info">
     <h3 class="product-name">${p.name}</h3>
     <p class="product-desc">${p.desc}</p>
@@ -132,6 +129,7 @@ document.getElementById("products").innerHTML = products.map(p => `
     </div>
   </div>
 </article>
+```
 
 `).join("");
 }
@@ -168,14 +166,18 @@ for (let i = 0; i < modalQuantity; i++) {
 addToCart(product.id);
 }
 
+```
 closeProductModal();
+```
 
 };
 
 document.getElementById("modalBuyWhatsApp").onclick = function() {
 const total = product.price * modalQuantity;
 
+```
 const message = `Hola Nansary 👋
+```
 
 Estoy interesado/a en realizar este pedido:
 
@@ -186,10 +188,12 @@ Total: ${money(total)}
 
 ¿Está disponible?`;
 
+```
 window.open(
   `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`,
   "_blank"
 );
+```
 
 };
 
@@ -237,7 +241,8 @@ const message = document.createElement("div");
 
 message.className = "added-message";
 
-message.innerHTML = <strong>✓ Agregado al carrito</strong> <span>${productName}</span> ;
+message.innerHTML = `     <strong>✓ Agregado al carrito</strong>     <span>${productName}</span>
+  `;
 
 document.body.appendChild(message);
 
@@ -276,11 +281,15 @@ const count = cart.reduce((sum, x) => sum + x.qty, 0);
 document.getElementById("cartCount").textContent = count;
 
 if (!cart.length) {
-container.innerHTML = <div class="empty"> Tu carrito está vacío.<br> Descubre nuestra colección. </div> ;
+container.innerHTML = `       <div class="empty">
+        Tu carrito está vacío.<br>
+        Descubre nuestra colección.       </div>
+    `;
 } else {
 container.innerHTML = cart.map(item => {
 const p = products.find(x => x.id === item.id);
 
+```
   if (!p) return "";
 
   return `
@@ -305,13 +314,16 @@ const p = products.find(x => x.id === item.id);
     </div>
   `;
 }).join("");
+```
 
 }
 
 const total = cart.reduce((sum, item) => {
 const p = products.find(x => x.id === item.id);
 
+```
 return p ? sum + p.price * item.qty : sum;
+```
 
 }, 0);
 
@@ -377,9 +389,11 @@ const note = document.getElementById("customerNote").value.trim();
 const lines = cart.map(item => {
 const p = products.find(x => x.id === item.id);
 
+```
 if (!p) return "";
 
 return `👜 ${p.name}
+```
 
 Cantidad: ${item.qty}
 Subtotal: ${money(p.price * item.qty)}`;
@@ -388,7 +402,9 @@ Subtotal: ${money(p.price * item.qty)}`;
 const total = cart.reduce((sum, item) => {
 const p = products.find(x => x.id === item.id);
 
+```
 return p ? sum + p.price * item.qty : sum;
+```
 
 }, 0);
 
@@ -406,12 +422,12 @@ TOTAL: ${money(total)}
 👤 Nombre: ${name}
 📍 Ciudad: ${city}
 🏠 Dirección: ${address}
-${note ? 📝 Indicación: ${note} : ""}
+${note ? `📝 Indicación: ${note}` : ""}
 
 ¿Me pueden confirmar disponibilidad y costo de envío? 😊`;
 
 window.open(
-https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)},
+`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`,
 "_blank"
 );
 
