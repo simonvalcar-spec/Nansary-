@@ -21,6 +21,79 @@ const products = [
     price: 170000,
     image: "assets/bolso-negro.jpeg",
     desc: "Textura trenzada y detalles dorados para un look sofisticado."
+  },
+
+  // NUEVA COLECCIÓN
+
+  {
+    id: 4,
+    name: "Bolso Cala Negro",
+    price: 170000,
+    image: "assets/cala-negro.jpeg",
+    desc: "Diseño tejido en negro con detalles elegantes y correa ajustable. Un bolso versátil para complementar cualquier look."
+  },
+  {
+    id: 5,
+    name: "Bolso Cala Menta",
+    price: 170000,
+    image: "assets/cala-menta.jpeg",
+    desc: "Diseño tejido en un delicado tono menta, acompañado de detalles en café y correa ajustable."
+  },
+  {
+    id: 6,
+    name: "Bolso Tote Dalia Café",
+    price: 170000,
+    image: "assets/tote-dalia-cafe.jpeg",
+    desc: "Diseño amplio y sofisticado con textura tejida y un elegante acabado en tonos café."
+  },
+  {
+    id: 7,
+    name: "Bolso Camelia Crema",
+    price: 170000,
+    image: "assets/camelia-crema.jpeg",
+    desc: "Diseño tejido en tono crema con detalles en café y cierre decorativo. Elegancia y versatilidad para tu día a día."
+  },
+  {
+    id: 8,
+    name: "Bolso Camelia Verde Pino",
+    price: 170000,
+    image: "assets/camelia-verde-pino.jpeg",
+    desc: "Una elegante combinación de verde pino y detalles café, con un diseño tejido lleno de personalidad."
+  },
+  {
+    id: 9,
+    name: "Bolso Camelia Café",
+    price: 170000,
+    image: "assets/camelia-cafe.jpeg",
+    desc: "Un clásico diseño en tono café con textura tejida y detalles cuidadosamente pensados para un estilo elegante."
+  },
+  {
+    id: 10,
+    name: "Bolso Camelia Negro",
+    price: 170000,
+    image: "assets/camelia-negro.jpeg",
+    desc: "Diseño tejido completamente en negro con detalles dorados. Elegante, sofisticado y fácil de combinar."
+  },
+  {
+    id: 11,
+    name: "Bolso Vianca Beige",
+    price: 171000,
+    image: "assets/vianca-beige.jpeg",
+    desc: "Diseño compacto y elegante en tono beige, con detalles dorados, borla lateral y correa ajustable."
+  },
+  {
+    id: 12,
+    name: "Bolso Tote Firme Verde Pino",
+    price: 205000,
+    image: "assets/tote-firme-verde-pino.jpeg",
+    desc: "Diseño estructurado en verde pino con bolsillo frontal y detalles dorados. Una opción práctica y sofisticada."
+  },
+  {
+    id: 13,
+    name: "Bolso Lía Compacto Miel",
+    price: 265000,
+    image: "assets/lia-compacto-miel.jpeg",
+    desc: "Diseño compacto en tono miel con detalles dorados y correa ajustable. Ideal para llevar lo esencial con elegancia."
   }
 ];
 
