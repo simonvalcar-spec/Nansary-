@@ -22,6 +22,28 @@ const products = [
     image: "assets/bolso-negro.jpeg",
     desc: "Textura trenzada y detalles dorados para un look sofisticado."
   },
+  {
+    id: 4,
+    name: "Bolso Vianca Beige",
+    price: 171000,
+    image: "assets/Vianca-beige.png",
+    desc: "Diseño elegante y versátil en un tono beige que combina con todo."
+  },
+  {
+    id: 5,
+    name: "Bolso Tote Firme Verde Pino",
+    price: 205000,
+    image: "assets/Tote-firme-verde-pino.png",
+    desc: "Un bolso amplio y sofisticado, ideal para acompañarte todos los días."
+  },
+  {
+    id: 6,
+    name: "Bolso Lía Compacto Miel",
+    price: 265000,
+    image: "assets/Lia-compacto-miel.png",
+    desc: "Diseño compacto y elegante con un acabado en tono miel."
+  }
+];
 
   // NUEVA COLECCIÓN
 
