@@ -1205,3 +1205,9 @@ CELULAR
     font-size:25px;
   }
 }
+/* Ajuste de imagen Cala Negro */
+img[src*="Cala-negro"] {
+  object-fit: contain !important;
+  padding: 15px;
+  background: #eee;
+}
