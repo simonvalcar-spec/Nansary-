@@ -62,7 +62,7 @@ id: 9,
 name: "Bolso Tote Dalia Café",
 price: 170000,
 image: "assets/Tote-dalia-cafe.png",
-desc: "Diseño amplio y sofisticado con textura tejida y acabado en tonos café."
+desc: "Diseño amplio y sofisticado con textura tejida y un elegante acabado en tonos café."
 },
 {
 id: 10,
@@ -96,12 +96,13 @@ desc: "Diseño tejido completamente en negro con detalles dorados."
 
 let cart = JSON.parse(localStorage.getItem("nansary-cart") || "[]");
 
-const money = value =>
-new Intl.NumberFormat("es-CO", {
+const money = (value) => {
+return new Intl.NumberFormat("es-CO", {
 style: "currency",
 currency: "COP",
 maximumFractionDigits: 0
 }).format(value);
+};
 
 /* =========================
 PRODUCTOS
@@ -111,52 +112,53 @@ function renderProducts() {
 const container = document.getElementById("products");
 
 if (!container) {
-console.error("NANSARY: No existe #products");
+console.error("NANSARY: No existe el elemento #products");
 return;
 }
 
-container.innerHTML = products.map(product => ` <article class="product" onclick="openProductModal(${product.id})">
+container.innerHTML = products.map((product) => {
+return ` <article class="product" onclick="openProductModal(${product.id})">
 
 ```
-  <div class="product-image">
-    <img
-      src="${product.image}"
-      alt="${product.name}"
-      loading="lazy"
-      onerror="this.style.display='none';"
-    >
-  </div>
+    <div class="product-image">
+      <img
+        src="${product.image}"
+        alt="${product.name}"
+        loading="lazy"
+      >
+    </div>
 
-  <div class="product-info">
+    <div class="product-info">
 
-    <h3 class="product-name">
-      ${product.name}
-    </h3>
+      <h3 class="product-name">
+        ${product.name}
+      </h3>
 
-    <p class="product-desc">
-      ${product.desc}
-    </p>
+      <p class="product-desc">
+        ${product.desc}
+      </p>
 
-    <div class="product-row">
+      <div class="product-row">
 
-      <span class="price">
-        ${money(product.price)}
-      </span>
+        <span class="price">
+          ${money(product.price)}
+        </span>
 
-      <button
-        class="add-button"
-        onclick="event.stopPropagation(); addToCart(${product.id})">
-        Agregar
-      </button>
+        <button
+          class="add-button"
+          onclick="event.stopPropagation(); addToCart(${product.id})">
+          Agregar
+        </button>
+
+      </div>
 
     </div>
 
-  </div>
-
-</article>
+  </article>
+`;
 ```
 
-`).join("");
+}).join("");
 
 console.log("NANSARY: productos cargados:", products.length);
 }
@@ -166,26 +168,39 @@ MODAL PRODUCTO
 ========================= */
 
 function openProductModal(id) {
-const product = products.find(p => p.id === id);
+const product = products.find((p) => p.id === id);
 
-if (!product) return;
+if (!product) {
+return;
+}
+
+const modal = document.getElementById("productModal");
+
+if (!modal) {
+return;
+}
 
 const image = document.getElementById("modalProductImage");
 const name = document.getElementById("modalProductName");
 const price = document.getElementById("modalProductPrice");
 const description = document.getElementById("modalProductDescription");
-const modal = document.getElementById("productModal");
-
-if (!modal) return;
 
 if (image) {
 image.src = product.image;
 image.alt = product.name;
 }
 
-if (name) name.textContent = product.name;
-if (price) price.textContent = money(product.price);
-if (description) description.textContent = product.desc;
+if (name) {
+name.textContent = product.name;
+}
+
+if (price) {
+price.textContent = money(product.price);
+}
+
+if (description) {
+description.textContent = product.desc;
+}
 
 let quantity = 1;
 
@@ -200,7 +215,7 @@ quantityText.textContent = quantity;
 }
 
 if (minus) {
-minus.onclick = () => {
+minus.onclick = function () {
 if (quantity > 1) {
 quantity--;
 quantityText.textContent = quantity;
@@ -209,20 +224,19 @@ quantityText.textContent = quantity;
 }
 
 if (plus) {
-plus.onclick = () => {
+plus.onclick = function () {
 quantity++;
 quantityText.textContent = quantity;
 };
 }
 
 if (addButton) {
-addButton.onclick = () => {
+addButton.onclick = function () {
+for (let i = 0; i < quantity; i++) {
+addToCart(product.id);
+}
 
 ```
-  for (let i = 0; i < quantity; i++) {
-    addToCart(product.id);
-  }
-
   closeProductModal();
 };
 ```
@@ -230,11 +244,10 @@ addButton.onclick = () => {
 }
 
 if (whatsappButton) {
-whatsappButton.onclick = () => {
+whatsappButton.onclick = function () {
+const total = product.price * quantity;
 
 ```
-  const total = product.price * quantity;
-
   const message =
 ```
 
@@ -264,7 +277,6 @@ document.body.style.overflow = "hidden";
 }
 
 function closeProductModal() {
-
 const modal = document.getElementById("productModal");
 
 if (modal) {
@@ -279,7 +291,6 @@ CARRITO
 ========================= */
 
 function saveCart() {
-
 localStorage.setItem(
 "nansary-cart",
 JSON.stringify(cart)
@@ -289,12 +300,13 @@ renderCart();
 }
 
 function addToCart(id) {
+const product = products.find((p) => p.id === id);
 
-const product = products.find(p => p.id === id);
+if (!product) {
+return;
+}
 
-if (!product) return;
-
-const existing = cart.find(item => item.id === id);
+const existing = cart.find((item) => item.id === id);
 
 if (existing) {
 existing.qty++;
@@ -312,7 +324,6 @@ openCart();
 }
 
 function showAddedMessage(productName) {
-
 const message = document.createElement("div");
 
 message.className = "added-message";
@@ -322,44 +333,44 @@ message.innerHTML = `     <strong>✓ Agregado al carrito</strong>     <span>${p
 
 document.body.appendChild(message);
 
-setTimeout(() => {
+setTimeout(function () {
 message.classList.add("hide");
 }, 2200);
 
-setTimeout(() => {
+setTimeout(function () {
 message.remove();
 }, 2600);
 }
 
 function changeQty(id, delta) {
+const item = cart.find((item) => item.id === id);
 
-const item = cart.find(item => item.id === id);
-
-if (!item) return;
+if (!item) {
+return;
+}
 
 item.qty += delta;
 
 if (item.qty <= 0) {
-cart = cart.filter(item => item.id !== id);
+cart = cart.filter((item) => item.id !== id);
 }
 
 saveCart();
 }
 
 function removeItem(id) {
-
-cart = cart.filter(item => item.id !== id);
-
+cart = cart.filter((item) => item.id !== id);
 saveCart();
 }
 
 function renderCart() {
-
 const container = document.getElementById("cartItems");
 const countElement = document.getElementById("cartCount");
 const totalElement = document.getElementById("cartTotal");
 
-if (!container) return;
+if (!container) {
+return;
+}
 
 const count = cart.reduce(
 (sum, item) => sum + item.qty,
@@ -371,26 +382,20 @@ countElement.textContent = count;
 }
 
 if (!cart.length) {
-
-```
-container.innerHTML = `
-  <div class="empty">
-    Tu carrito está vacío.<br>
-    Descubre nuestra colección.
-  </div>
-`;
-```
-
+container.innerHTML = `       <div class="empty">
+        Tu carrito está vacío.<br>
+        Descubre nuestra colección.       </div>
+    `;
 } else {
+container.innerHTML = cart.map((item) => {
+const product = products.find(
+(p) => p.id === item.id
+);
 
 ```
-container.innerHTML = cart.map(item => {
-
-  const product = products.find(
-    p => p.id === item.id
-  );
-
-  if (!product) return "";
+  if (!product) {
+    return "";
+  }
 
   return `
     <div class="cart-item">
@@ -442,7 +447,6 @@ container.innerHTML = cart.map(item => {
 
     </div>
   `;
-
 }).join("");
 ```
 
@@ -450,16 +454,16 @@ container.innerHTML = cart.map(item => {
 
 const total = cart.reduce(
 (sum, item) => {
+const product = products.find(
+(p) => p.id === item.id
+);
 
 ```
-  const product = products.find(
-    p => p.id === item.id
-  );
+  if (!product) {
+    return sum;
+  }
 
-  return product
-    ? sum + product.price * item.qty
-    : sum;
-
+  return sum + product.price * item.qty;
 },
 0
 ```
@@ -472,11 +476,10 @@ totalElement.textContent = money(total);
 }
 
 /* =========================
-ABRIR / CERRAR CARRITO
+CARRITO ABRIR / CERRAR
 ========================= */
 
 function openCart() {
-
 const panel = document.getElementById("cartPanel");
 const backdrop = document.getElementById("cartBackdrop");
 
@@ -491,7 +494,6 @@ backdrop.classList.add("show");
 }
 
 function closeCart() {
-
 const panel = document.getElementById("cartPanel");
 const backdrop = document.getElementById("cartBackdrop");
 
@@ -510,7 +512,6 @@ CHECKOUT
 ========================= */
 
 function openCheckout() {
-
 if (!cart.length) {
 alert("Agrega al menos un producto al carrito.");
 return;
@@ -525,7 +526,6 @@ document.body.style.overflow = "hidden";
 }
 
 function closeCheckout() {
-
 const modal = document.getElementById("checkoutModal");
 
 if (modal) {
@@ -539,7 +539,7 @@ document.body.style.overflow = "";
 EVENTOS
 ========================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
 renderProducts();
 renderCart();
@@ -558,20 +558,14 @@ const productModal =
 document.getElementById("productModal");
 
 if (productModal) {
-
-```
 productModal.addEventListener(
-  "click",
-  event => {
-
-    if (event.target === productModal) {
-      closeProductModal();
-    }
-
-  }
+"click",
+function (event) {
+if (event.target === productModal) {
+closeProductModal();
+}
+}
 );
-```
-
 }
 
 const openCartButton =
@@ -608,20 +602,13 @@ const clearCart =
 document.getElementById("clearCart");
 
 if (clearCart) {
-
-```
 clearCart.addEventListener(
-  "click",
-  () => {
-
-    cart = [];
-
-    saveCart();
-
-  }
+"click",
+function () {
+cart = [];
+saveCart();
+}
 );
-```
-
 }
 
 const checkout =
@@ -638,52 +625,39 @@ const closeCheckoutButton =
 document.getElementById("closeCheckoutModal");
 
 if (closeCheckoutButton) {
-
-```
 closeCheckoutButton.addEventListener(
-  "click",
-  closeCheckout
+"click",
+closeCheckout
 );
-```
-
 }
 
 const checkoutModal =
 document.getElementById("checkoutModal");
 
 if (checkoutModal) {
-
-```
 checkoutModal.addEventListener(
-  "click",
-  event => {
-
-    if (event.target === checkoutModal) {
-      closeCheckout();
-    }
-
-  }
+"click",
+function (event) {
+if (event.target === checkoutModal) {
+closeCheckout();
+}
+}
 );
-```
-
 }
 
 const checkoutForm =
 document.getElementById("checkoutForm");
 
 if (checkoutForm) {
+checkoutForm.addEventListener(
+"submit",
+function (event) {
 
 ```
-checkoutForm.addEventListener(
-  "submit",
-  event => {
-
     event.preventDefault();
 
     if (!cart.length) {
-      alert(
-        "Agrega al menos un producto al carrito."
-      );
+      alert("Agrega al menos un producto al carrito.");
       return;
     }
 
@@ -701,14 +675,16 @@ checkoutForm.addEventListener(
 
 
     const lines = cart
-      .map(item => {
+      .map((item) => {
 
         const product =
           products.find(
-            p => p.id === item.id
+            (p) => p.id === item.id
           );
 
-        if (!product) return "";
+        if (!product) {
+          return "";
+        }
 
         return `👜 ${product.name}
 ```
@@ -726,12 +702,14 @@ Subtotal: ${money(product.price * item.qty)}`;
 
         const product =
           products.find(
-            p => p.id === item.id
+            (p) => p.id === item.id
           );
 
-        return product
-          ? sum + product.price * item.qty
-          : sum;
+        if (!product) {
+          return sum;
+        }
+
+        return sum + product.price * item.qty;
 
       },
       0
@@ -765,7 +743,6 @@ ${note ? `📝 Indicación: ${note}` : ""}
     );
 
     closeCheckout();
-
   }
 );
 ```
