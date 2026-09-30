@@ -1205,9 +1205,16 @@ CELULAR
     font-size:25px;
   }
 }
-/* Ajuste de imagen Cala Negro */
-img[src*="Cala-negro"] {
+/* CALA NEGRO - MOSTRAR FOTO COMPLETA */
+
+.product-image img[src*="Cala-negro"] {
   object-fit: contain !important;
-  padding: 15px;
-  background: #eee;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 20px !important;
+  transform: none !important;
+}
+
+.product:hover .product-image img[src*="Cala-negro"] {
+  transform: none !important;
 }
